@@ -18,8 +18,9 @@ import { QuizDetailComponent } from "./quiz-detail/quiz-detail.component";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
-import { StudAnsComponent } from './stud-ans/stud-ans.component';
-import { StudListComponent } from './stud-list/stud-list.component';
+import { StudAnsComponent } from "./stud-ans/stud-ans.component";
+import { StudListComponent } from "./stud-list/stud-list.component";
+import { FilterPipe } from "./service/search.pipe";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { StudListComponent } from './stud-list/stud-list.component';
     RegisterComponent,
     StudAnsComponent,
     StudListComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

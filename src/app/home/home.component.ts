@@ -9,8 +9,11 @@ import { StorageService } from "../service/storage.service";
 export class HomeComponent implements OnInit {
   constructor(private sub: StorageService) {}
   list;
+  users;
+  searchString: string;
 
   ngOnInit(): void {
     this.list = this.sub.getSub();
+    this.users = JSON.parse(localStorage.getItem("users"));
   }
 }
