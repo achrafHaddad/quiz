@@ -1,0 +1,17 @@
+<form>
+  <h1>{{ quiz.title }}</h1>
+  <div *ngFor="let quest of quiz.questGroup">
+    <h1>{{ quest.question }}</h1>
+    <div class="form-group form-check" *ngFor="let ch of quest.choiceGroup">
+      <div *ngIf="ch.rep === true; else dis">
+        <input type="checkbox" disabled checked class="form-check-input" />
+        <label class="form-check-label">{{ ch.choice }}</label>
+      </div>
+      <ng-template #dis>
+        <input type="checkbox" disabled class="form-check-input" />
+        <label class="form-check-label">{{ ch.choice }}</label>
+      </ng-template>
+    </div>
+  </div>
+  <div>score: {{ quiz.score }}</div>
+</form>

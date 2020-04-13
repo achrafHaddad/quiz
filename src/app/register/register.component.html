@@ -1,0 +1,80 @@
+<form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+  <div>
+    <mat-form-field>
+      <input
+        formControlName="name"
+        (blur)="logValidationErrors()"
+        matInput
+        placeholder="Name"
+      />
+    </mat-form-field>
+    <div
+      class="text-danger"
+      *ngIf="regForm.controls.name.touched && regForm.controls.name.invalid"
+    >
+      <mat-error *ngIf="formErrors?.name">
+        <strong>{{ formErrors.name }}</strong>
+      </mat-error>
+    </div>
+  </div>
+  <div>
+    <mat-form-field>
+      <input
+        formControlName="email"
+        (blur)="logValidationErrors()"
+        matInput
+        placeholder="Email"
+      />
+    </mat-form-field>
+    <div
+      class="text-danger"
+      *ngIf="regForm.controls.email.touched && regForm.controls.email.invalid"
+    >
+      <mat-error *ngIf="formErrors.email">
+        <strong>{{ formErrors.email }}</strong>
+      </mat-error>
+    </div>
+  </div>
+  <div>
+    <mat-form-field>
+      <input formControlName="password" matInput placeholder="password" />
+    </mat-form-field>
+    <div
+      class="text-danger"
+      *ngIf="
+        regForm.controls.password.touched && regForm.controls.password.invalid
+      "
+    >
+      <mat-error *ngIf="regForm.controls.password.errors?.required">
+        <strong>password is required.</strong>
+      </mat-error>
+      <mat-error *ngIf="regForm.controls.password.errors?.pattern">
+        <strong
+          >At least 8 characters in length Lowercase letters Uppercase letters
+          Numbers Special characters</strong
+        >
+      </mat-error>
+    </div>
+  </div>
+  <div>
+    <input type="radio" value="coach" formControlName="role" />I'm a coach
+  </div>
+  <div>
+    <input type="radio" value="student" formControlName="role" />I'm a student
+  </div>
+  <div
+    class="text-danger"
+    *ngIf="regForm.controls.role.touched && regForm.controls.role.invalid"
+  >
+    <mat-error *ngIf="regForm.controls.role.errors?.required">
+      <strong>Role is required.</strong>
+    </mat-error>
+  </div>
+  <button
+    type="submit"
+    [disabled]="!regForm.valid"
+    class="btn btn-outline-primary mt-2"
+  >
+    Submit
+  </button>
+</form>

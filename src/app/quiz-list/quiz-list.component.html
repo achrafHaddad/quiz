@@ -1,0 +1,14 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Quiz name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of list; index as i">
+      <th scope="row">{{ item.qid }}</th>
+      <td [routerLink]="['/quiz', i]">{{ item.title }}</td>
+    </tr>
+  </tbody>
+</table>

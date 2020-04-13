@@ -1,0 +1,28 @@
+<form (ngSubmit)="onSubmit()">
+  <h1>{{ quiz.title }}</h1>
+  <div *ngFor="let quest of quiz.questGroup">
+    <h1>{{ quest.question }}</h1>
+    <div class="form-group form-check" *ngFor="let ch of quest.choiceGroup">
+      <input
+        (change)="onCheckChange(ch)"
+        type="checkbox"
+        [value]="ch.rep"
+        class="form-check-input"
+      />
+      <label class="form-check-label">{{ ch.choice }}</label>
+    </div>
+  </div>
+  <button [hidden]="isCoach" type="submit" class="btn btn-outline-success mt-2">
+    Submit
+  </button>
+  <div [hidden]="hide">Your Score is {{ count }} out of {{ chLength }}</div>
+
+  <button
+    [hidden]="!isCoach"
+    [routerLink]="['/newQuiz', id]"
+    type="button"
+    class="btn btn-outline-primary mt-2"
+  >
+    Edit
+  </button>
+</form>

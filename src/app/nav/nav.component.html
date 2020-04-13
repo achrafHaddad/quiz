@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" *ngIf="isLoggedIn" routerLink="/home">Home</a>
+  <button
+    (click)="toggleNavbar()"
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div
+    class="collapse navbar-collapse"
+    [ngClass]="{ show: navbarOpen }"
+    id="navbarNav"
+  >
+    <ul class="navbar-nav">
+      <ng-template #anonymous>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login">Login </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register">Sign up</a>
+        </li>
+      </ng-template>
+      <ng-template #student>
+        <li class="nav-item dropdown" ngbDropdown>
+          <a
+            *ngIf="isLoggedIn"
+            ngbDropdownToggle
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Welcome {{ conUser.user }}
+          </a>
+          <div
+            ngbDropdownMenu
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdown"
+          >
+            <a class="dropdown-item" *ngIf="isLoggedIn" routerLink="/myList"
+              >Quiz list</a
+            >
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logOut()">Log out</a>
+          </div>
+        </li>
+      </ng-template>
+      <li class="nav-item dropdown" ngbDropdown *ngIf="conUser; else anonymous">
+        <div *ngIf="isCoach; else student">
+          <a
+            *ngIf="isLoggedIn"
+            ngbDropdownToggle
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Welcome {{ conUser.user }}
+          </a>
+          <div
+            ngbDropdownMenu
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdown"
+          >
+            <a
+              class="dropdown-item"
+              *ngIf="isLoggedIn && isCoach"
+              routerLink="/newQuiz"
+              >New Quiz</a
+            >
+            <a
+              class="dropdown-item"
+              *ngIf="isLoggedIn && isCoach"
+              routerLink="/quizList"
+              >Quiz list</a
+            >
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logOut()">Log out</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
