@@ -1,0 +1,65 @@
+<form [formGroup]="quizForm">
+  <mat-form-field>
+    <input formControlName="title" matInput placeholder="Quiz Title" />
+  </mat-form-field>
+
+  <div>
+    <button
+      (click)="addQuest()"
+      class="btn btn-outline-primary m-2"
+      type="button"
+    >
+      Add question
+    </button>
+  </div>
+  <ol formArrayName="questGroup">
+    <li *ngFor="let quest of questions.controls; index as i">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <input formControlName="question" matInput placeholder="Question" />
+        </mat-form-field>
+        <button
+          (click)="delquest(i)"
+          class="btn btn-outline-warning m-2"
+          type="button"
+        >
+          Delete question
+        </button>
+        <ul formArrayName="choiceGroup">
+          <button
+            (click)="addChoice(quest)"
+            class="btn btn-outline-primary m-2"
+            type="button"
+          >
+            Add choice
+          </button>
+          <li *ngFor="let ch of quest.get('choiceGroup').controls; index as j">
+            <div [formGroupName]="j">
+              <input formControlName="torf" type="checkbox" />
+              <mat-form-field class="example-full-width">
+                <input formControlName="choice" matInput placeholder="Choice" />
+              </mat-form-field>
+              <button
+                (click)="delChoice(quest, j)"
+                class="btn btn-outline-warning m-2"
+                type="button"
+              >
+                Delete choice
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ol>
+  <button type="button" (click)="edit()" class="btn btn-outline-success mt-2">
+    Edit
+  </button>
+  <button
+    type="button"
+    (click)="delete(id)"
+    class="btn btn-outline-danger mt-2"
+  >
+    Delete
+  </button>
+</form>

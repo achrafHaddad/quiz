@@ -33,9 +33,7 @@ export class QuizDetailComponent implements OnInit {
     this.id = this.route.snapshot.params["id"];
     this.q = this.sub.getQuiz(this.id);
 
-    this.store = JSON.parse(localStorage.getItem("quiz"));
-    this.copie = this.store[this.id];
-    this.quiz = { ...this.copie };
+    this.quiz = { ...this.q };
     this.isCoach = true ? this.auth.conCoach() : false;
   }
   onSubmit() {

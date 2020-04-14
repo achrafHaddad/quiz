@@ -21,6 +21,7 @@ import { RegisterComponent } from "./register/register.component";
 import { StudAnsComponent } from "./stud-ans/stud-ans.component";
 import { StudListComponent } from "./stud-list/stud-list.component";
 import { FilterPipe } from "./service/search.pipe";
+import { QuizEditComponent } from './quiz-edit/quiz-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FilterPipe } from "./service/search.pipe";
     StudAnsComponent,
     StudListComponent,
     FilterPipe,
+    QuizEditComponent,
   ],
   imports: [
     BrowserModule,

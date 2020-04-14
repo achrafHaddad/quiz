@@ -10,6 +10,7 @@ import { AuthgGuard } from "./authg.guard";
 import { AuthcoachGuard } from "./authcoach.guard";
 import { StudAnsComponent } from "./stud-ans/stud-ans.component";
 import { StudListComponent } from "./stud-list/stud-list.component";
+import { QuizEditComponent } from "./quiz-edit/quiz-edit.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -22,9 +23,9 @@ const routes: Routes = [
     component: NewQuizComponent,
   },
   {
-    path: "newQuiz/:id",
+    path: "quizEdit/:id",
     canActivate: [AuthgGuard, AuthcoachGuard],
-    component: NewQuizComponent,
+    component: QuizEditComponent,
   },
   {
     path: "quizList",

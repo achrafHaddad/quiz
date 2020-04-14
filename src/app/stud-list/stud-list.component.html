@@ -12,9 +12,9 @@
       <th scope="row">{{ item.qid }}</th>
       <td [routerLink]="['/myQuiz', i]">{{ item.title }}</td>
       <td>{{ item.score }}</td>
-      <div *ngFor="let user of users">
+      <ng-container *ngFor="let user of users">
         <td *ngIf="user.uid === item.cid">{{ user.name }}</td>
-      </div>
+      </ng-container>
     </tr>
   </tbody>
 </table>
